@@ -1,75 +1,43 @@
-# Nuxt 3 Minimal Starter
+# instructions
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+run this app, and hit refresh until you see this warning:
 
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+```
+warn [Vue warn]: Hydration attribute mismatch on 
+<button class="focus:outline-none disab…nline-flex items-center" type="button" disabled=""> 
+  - rendered on server: disabled="true"
+  - expected on client: (not rendered)
+  Note: this mismatch is check-only. The DOM will not be rectified in production due to performance overhead.
+  You should fix the source of the mismatch. 
+  at <Link type="button" disabled=false class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"  ... > 
+  at <Button disabled=false onClick=fn<onClicked> > 
+  at <App key=3 > 
+  at <NuxtRoot>
 ```
 
-## Development Server
+this happens when disabled can change
 
-Start the development server on `http://localhost:3000`:
+if you take away the `disabled` property, there is no error
 
-```bash
-# npm
-npm run dev
+```
+// app.vue
 
-# pnpm
-pnpm run dev
+<template>
+  <div>
+    <UButton 
+      :disabled="disableButton"
+      @click="onClicked"
+    >This is a button</UButton>
+  </div>
+</template>
 
-# yarn
-yarn dev
+<script setup lang="ts">
+  const disableButton = computed(() => Math.random() > .5)
 
-# bun
-bun run dev
+  const onClicked = () => {
+    alert('clicked')
+  }
+</script>
 ```
 
-## Production
 
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

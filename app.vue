@@ -1,9 +1,14 @@
 <template>
-  <div>
+  <div class="flex justify-around">
     <UButton 
-      :disabled="disableButton"
       @click="onClicked"
-    >This is a button</UButton>
+      :disabled="disableButton"
+    >This is a button with the warning - comment it out to remove warning
+    </UButton>
+    <UButton 
+      @click="onClicked"
+    >This is a button with no warning
+    </UButton>
   </div>
 </template>
 
