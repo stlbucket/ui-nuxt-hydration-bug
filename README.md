@@ -1,3 +1,7 @@
+this is a reproduction for nuxt/ui bug:
+
+https://github.com/nuxt/ui/issues/1671
+
 # instructions
 
 run this app, and hit refresh until you see this warning:
